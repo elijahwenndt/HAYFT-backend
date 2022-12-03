@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from rest_framework.decorators import action
 from .models import CustomUser
 
-from .serializers import CustomUserSerializer
+from .serializers import CustomUserSerializer, MyTokenObtainPairSerializer
 
 class UserCreate(APIView):
     permission_classes = (permissions.AllowAny,)
@@ -27,3 +27,8 @@ class UserDetail(generics.RetrieveAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
 # Create your views here.
+
+class ObtainTokenPairWithColorView(TokenObtainPairView):
+    permission_classes = (permissions.AllowAny,)
+    serializer_class = MyTokenObtainPairSerializer
+

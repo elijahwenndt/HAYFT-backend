@@ -4,14 +4,14 @@ from .models import CustomUser
 
 class CustomUserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
-        required=True
+        required=False
     )
     username = serializers.CharField()
     password = serializers.CharField(min_length=8, write_only=True)
     
     class Meta:
         model = CustomUser
-        fields = ('email', 'username', 'password')
+        fields = ('username', 'password')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -21,3 +21,11 @@ class CustomUserSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+
+    @classmethod
+    def get_token(cls, user):
+        token = super(MyTokenObtainPairSerializer, cls).get_token(user)
+
+        return token
