@@ -3,9 +3,9 @@ from rest_framework import serializers
 from .models import CustomUser 
 
 class CustomUserSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(
-        required=False
-    )
+    # email = serializers.EmailField(
+    #     required=False
+    # )
     username = serializers.CharField()
     password = serializers.CharField(min_length=8, write_only=True)
     

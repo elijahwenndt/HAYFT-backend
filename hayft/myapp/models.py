@@ -14,3 +14,9 @@ class CustomUser(AbstractUser):
             instance.set_password(password)
         instance.save()
         return instance
+
+class Post(models.Model):
+    author = models.ForeignKey(CustomUser, on_delete=models.PROTECT)
+    emoji = models.CharField(max_length=10)
+    text_content = models.CharField(max_length=500000)
+    created_at = models.DateField(auto_now_add=True)
