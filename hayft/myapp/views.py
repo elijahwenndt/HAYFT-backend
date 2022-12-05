@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import action
 from .models import CustomUser, Post
-
+from django_filters.rest_framework import DjangoFilterBackend
 from .serializers import CustomUserSerializer, MyTokenObtainPairSerializer, PostSerializer
 
 class UserCreate(APIView):
