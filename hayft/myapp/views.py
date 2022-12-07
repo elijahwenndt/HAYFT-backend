@@ -34,8 +34,9 @@ class ObtainTokenPairWithColorView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 class PostViewSet(ModelViewSet):
-    queryset = Post.objects.all()
+    queryset = Post.objects.all().order_by('-created_at')
     serializer_class = PostSerializer
     http_method_names = ['get', 'post']
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['author__id']
+    

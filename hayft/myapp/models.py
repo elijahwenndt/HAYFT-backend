@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+# from django.utils.timezone import now as utcnow
 
 class CustomUser(AbstractUser):
     extra_kwargs = {'password': {'write_only': True}}
@@ -19,4 +20,4 @@ class Post(models.Model):
     author = models.ForeignKey(CustomUser, on_delete=models.PROTECT)
     emoji = models.CharField(max_length=10)
     text_content = models.CharField(max_length=500000)
-    created_at = models.DateField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
