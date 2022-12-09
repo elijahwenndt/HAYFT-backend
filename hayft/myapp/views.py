@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from rest_framework import viewsets
+from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import status, permissions, generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import action
-from .models import CustomUser
-
-from .serializers import CustomUserSerializer, MyTokenObtainPairSerializer
+from .models import CustomUser, Post
+from django_filters.rest_framework import DjangoFilterBackend
+from .serializers import CustomUserSerializer, MyTokenObtainPairSerializer, PostSerializer
 
 class UserCreate(APIView):
     permission_classes = (permissions.AllowAny,)
@@ -32,3 +33,10 @@ class ObtainTokenPairWithColorView(TokenObtainPairView):
     permission_classes = (permissions.AllowAny,)
     serializer_class = MyTokenObtainPairSerializer
 
+class PostViewSet(ModelViewSet):
+    queryset = Post.objects.all().order_by('-created_at')
+    serializer_class = PostSerializer
+    http_method_names = ['get', 'post', 'delete']
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['author__id']
+    

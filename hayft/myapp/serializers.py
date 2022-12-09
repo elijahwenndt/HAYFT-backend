@@ -1,6 +1,6 @@
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
-from .models import CustomUser 
+from .models import CustomUser, Post
 
 class CustomUserSerializer(serializers.ModelSerializer):
     # email = serializers.EmailField(
@@ -29,3 +29,9 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token = super(MyTokenObtainPairSerializer, cls).get_token(user)
 
         return token
+
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = "__all__" 
+        
