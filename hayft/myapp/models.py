@@ -21,3 +21,7 @@ class Post(models.Model):
     emoji = models.CharField(max_length=10)
     text_content = models.CharField(max_length=500000)
     created_at = models.DateTimeField(auto_now_add=True)
+    date_reference = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.author
