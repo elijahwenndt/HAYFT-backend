@@ -73,10 +73,10 @@ else:
 
 ALLOWED_HOSTS = ['*']
 
-# CSRF_TRUSTED_ORIGINS = [
-#     'https://*.gitpod.io',
-#     'https://*.appspot.com',
-# ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.gitpod.io',
+    'https://*.appspot.com',
+]
 
 CORS_ALLOWED_ORIGIN_REGEXES = [
     r"^https://.*\.gitpod\.io$",

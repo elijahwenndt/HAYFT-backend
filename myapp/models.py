@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 class CustomUser(AbstractUser):
     extra_kwargs = {'password': {'write_only': True}}
     def __str__(self):
-        return self.username
+        return f"{self.username}"
     
 
     def create(self, validated_data):
@@ -24,4 +24,4 @@ class Post(models.Model):
     date_reference = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return self.author
+        return f"{self.author}"
